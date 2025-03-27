@@ -26,12 +26,12 @@ public class BelajarSpringbootApplication {
         System.out.println("Book Title: " + book.getTitle());
         System.out.println("Author Name: " + book.getAuthor().getName());
 
-        EmailService emailService = (EmailService) context.getBean(EmailService.class);
-        try {
-            emailService.sendMail();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // EmailService emailService = (EmailService) context.getBean(EmailService.class);
+        // try {
+        //     emailService.sendMail();
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
 	}
 
 }
