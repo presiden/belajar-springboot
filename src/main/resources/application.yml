@@ -1,0 +1,18 @@
+spring:
+ application:
+  name: belajar-springboot
+server:
+ port: 8080
+app:
+ name: Belajar Spring Boot
+ currency: IDR
+---
+spring.config.activate.on-profile: development
+server.port: 8081
+---
+spring:
+ config:
+  activate:
+   on-profile: staging
+server:
+ port: 8082
