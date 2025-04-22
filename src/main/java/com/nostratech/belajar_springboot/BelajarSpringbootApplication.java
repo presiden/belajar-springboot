@@ -1,16 +1,10 @@
 package com.nostratech.belajar_springboot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.nostratech.belajar_springboot.config.AppConfig;
 import com.nostratech.belajar_springboot.entity.Author;
 import com.nostratech.belajar_springboot.entity.Book;
-import com.nostratech.belajar_springboot.entity.EmailService;
 
 @SpringBootApplication
 public class BelajarSpringbootApplication {
