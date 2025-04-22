@@ -1,5 +1,8 @@
 package com.nostratech.belajar_springboot.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nostratech.belajar_springboot.dto.AuthorDTO;
+import com.nostratech.belajar_springboot.service.AuthorService;
 
 @Controller
 @RequestMapping("/authors")
 public class AuthorController {
+    
+    private AuthorService authorService;
+
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
+    
     @GetMapping("new")
     public String displayAuthorForm(Model model) {
         // model.addAttribute("authorDTO", new AuthorDTO("", ""));
@@ -21,13 +32,10 @@ public class AuthorController {
 
     @PostMapping("new")
     public String submitForm(@ModelAttribute AuthorDTO authorDTO, RedirectAttributes redirectAttributes) {
-        // model.addAttribute("authorDTO", authorDTO);
-
-        System.out.println("Author Name: " + authorDTO.name());
-        System.out.println("Author Description: " + authorDTO.description());
+        authorService.createAuthor(authorDTO);
         redirectAttributes.addFlashAttribute("authorDTO", authorDTO);
 
-        return "redirect:/authors/result";
+        return "redirect:/authors/list";
     }
 
     @GetMapping("result")
@@ -36,5 +44,16 @@ public class AuthorController {
             System.out.println("displayResult Author Name: " + authorDTO.name());
         }
         return "author/author-result";
+    }
+
+    @GetMapping("list")
+    public String displayList(Model model) {
+        List<AuthorDTO> authorDTOs = authorService.getAllAuthors();
+
+        if (!authorDTOs.isEmpty()) {
+            System.out.println("Number of authors: " + authorDTOs.size());
+        }
+        model.addAttribute("authorDTOs", authorDTOs);
+        return "author/author-list";
     }
 }
